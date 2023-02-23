@@ -106,10 +106,22 @@ print(f'Второй многочлен:\n{polinom2}')
 
 dict3 = {}     # Создаем третий словарь
 # Складываем значения словарей по одинаковым ключам
-for key1, value1, in dict1.items():
-    for key2, value2 in dict2.items():
-        if key1 == key2:
-            dict3[key1] = value1 + value2
+if pow1 > pow2:
+    i = pow1
+    while i > pow2:
+        dict3[i] = dict1[i]
+        i -= 1
+    while i >= 0:
+        dict3[i] = dict1[i] + dict2[i]
+        i -= 1
+else:
+    i = pow2
+    while i > pow1:
+        dict3[i] = dict2[i]
+        i -= 1
+    while i >= 0:
+        dict3[i] = dict1[i] + dict2[i]
+        i -= 1
 
 polinomial3 = ''
 # превращаем словарь в строку и форматируем
@@ -148,6 +160,10 @@ while i < len(temp_list):
     else:
         i += 1
 polinom3 = ''.join(temp_list)     # превращаем список обратно в строку для вывода
+
+print(dict1)
+print(dict2)
+print(dict3)
 print(f'Сумма многочленов:\n{polinom3}')
 
 
