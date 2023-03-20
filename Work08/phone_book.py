@@ -1,15 +1,8 @@
-# открыть файл
-# сохранить файл
-# показать контакты
-# добавить контакт
-# изменить контакт
-# найти контакт
-# удалить контакт
-# выход
+import module_pb_class as pb    #импортируем модуль
+from module_pb_class import PhoneBook
 
-import module
-temp_file = []
-temp_file1 = module.open_file()
+
+# функция для вывода меню в консоль
 def print_menu():
     print('Это телефонный справочник. Выберите действие: \n'
           '1. Открыть файл\n'
@@ -23,25 +16,29 @@ def print_menu():
     menu_choice = int(input('Введите номер действия: '))
     return menu_choice
 
+temp_pb1 = pb.open_file()   #сохраняем в переменную данные до изменения
+
+# бесконечнй цикл для повторения вывода меню после каждого действия
 while True:
     user_choice = print_menu()
     match user_choice:
         case 1:
-            temp_file = module.open_file()
+            temp_pb = pb.open_file()    #временный список из контактов, с которым будем работать
+            phone_book = PhoneBook(temp_pb)     #объект класса PhoneBook
         case 2:
-            module.save_file(temp_file)
+            phone_book.save_file()
         case 3:
-            module.show_contacts(temp_file)
+            phone_book.show_contacts()
         case 4:
-            module.add_contact(temp_file)
+            phone_book.add_contact()
         case 5:
-            module.change_contact(temp_file)
+            phone_book.change_contact()
         case 6:
-            module.find_contact(temp_file)
+            phone_book.find_contact()
         case 7:
-            module.del_contact(temp_file)
+            phone_book.del_contact()
         case 8:
-            if temp_file != temp_file1:
+            if temp_pb1 != phone_book.temp_pb:
                 choice = int(input('Если вы уверены, что хотите выйти без сохранения, нажмите 1: '))
                 if choice == 1:
                     print('Выход\n')
